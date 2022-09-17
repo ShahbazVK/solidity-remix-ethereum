@@ -2,6 +2,10 @@ pragma solidity ^0.7.5;
 import './Ownable.sol';
 import './Destroyable.sol';
 
+interface GovernmentInterface{
+    function addTransaction(address _from, address _to, uint _amount) external;
+}
+
 contract Bank is Ownable,Destroyable{
     mapping(address=>uint) public balance;
 
@@ -17,6 +21,10 @@ contract Bank is Ownable,Destroyable{
 
     function totalBalance() public view returns (uint){
         return address(this).balance;
+    }
+
+    function getOwner() public view returns (address){
+        return owner;
     }
 
     function withdraw(uint amount)public{
