@@ -14,7 +14,7 @@ contract Government{
         transactionLog.push(_transaction);
     }
     function getTransaction(uint _index) public view returns (address,address,uint){
-        return transactionLog[_index].from, transactionLog[_index].to, transactionLog[_index].amount;
+        return (transactionLog[_index].from, transactionLog[_index].to, transactionLog[_index].amount);
     }
 
 }

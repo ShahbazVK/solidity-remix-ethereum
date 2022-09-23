@@ -7,6 +7,10 @@ interface GovernmentInterface{
 }
 
 contract Bank is Ownable,Destroyable{
+
+    GovernmentInterface governmentInstance=GovernmentInterface(0x358AA13c52544ECCEF6B0ADD0f801012ADAD5eE3);
+
+
     mapping(address=>uint) public balance;
 
     function addBalance() public payable{
@@ -38,5 +42,7 @@ contract Bank is Ownable,Destroyable{
         require(msg.sender!=recipient,"You are sender");
         balance[msg.sender]-=amount;
         balance[recipient]+=amount;
+
+        governmentInstance.addTransaction(msg.sender,recipient,amount);
     }
 }
